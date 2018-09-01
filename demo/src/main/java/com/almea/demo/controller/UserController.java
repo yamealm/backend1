@@ -41,6 +41,18 @@ public class UserController {
 		return new RestResponse(HttpStatus.OK.value(),"Operacion exitosa");
 	}
 	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+	public void deleteUser(@RequestBody String userJson) throws Exception {
+		this.mapper = new ObjectMapper();
+		
+		User user = this.mapper.readValue(userJson, User.class);
+		if(user.getId() == null) {
+			throw new Exception("El id esta nulo");
+		}
+		
+		this.userService.deleteUser(user.getId());
+	}
+	
 	@RequestMapping(value = "/getUsers", method = RequestMethod.GET)
 	public List<User> getUsers() {
 		return this.userService.findAll();
