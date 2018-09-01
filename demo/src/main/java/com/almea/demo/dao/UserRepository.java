@@ -7,5 +7,6 @@ import com.almea.demo.model.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 
 	@SuppressWarnings("unchecked")
-	User save(User user);
+	User save(User user);	
+	
 }
